@@ -1,0 +1,22 @@
+function [ params ] = sensor_params( input_args )
+
+A=imread('sonda_scheme.png');
+imshow(A);
+
+% FOV
+prompt = {'Sensor FOV diameter[mm]'};
+dlg_title = 'Input for sensor';
+num_lines = 1;
+def = {'10','hsv'};
+sens_fov_diam = inputdlg(prompt,dlg_title,num_lines,def);
+sens_fov_diam=str2double(sens_fov_diam);
+
+if (isnumeric(sens_fov_diam))                                                        
+else    
+    error('This is not a number');
+end
+
+sens_fov_radius=sens_fov_diam/2;
+
+end
+

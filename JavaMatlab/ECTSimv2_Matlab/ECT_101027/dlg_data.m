@@ -1,0 +1,16 @@
+function [ val ] = dlg_data( header,msg,def_val )
+
+prompt = {msg};
+dlg_title = header;
+num_lines = 1;
+def = {def_val,'hsv'};
+val = inputdlg(prompt,dlg_title,num_lines,def);
+val=str2double(val);
+
+if (isnumeric(val))                                                        
+else    
+    error('This is not a number');
+end
+
+end
+

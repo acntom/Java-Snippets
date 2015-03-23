@@ -1,0 +1,56 @@
+%> @file Reconstructor.m
+%> @brief This is abstract class. Basic properties and methods use to reconstruct image.
+% =========================================================================
+%> @brief This is abstract class. Basic properties and methods use to reconstruct image.
+% ectsim - Electrical Capacitance Tomography - Image Reconstruction Toolbox
+% =========================================================================
+classdef Reconstructor < handle
+    
+    properties (Abstract = true)
+        %> Electrical field object with main phantom
+        Ef_pha;
+        %> Electrical field object with uniform minimal permittivity phantom
+        Ef_min;
+        %> Electrical field object with uniform maximal permittivity phantom
+        Ef_max;
+        %> Electrical field object with uniform average permittivity phantom
+        Ef_avg;
+        %> permittivity distribution vector (start solution)
+        Ep_0; 
+        %> permittivity distribution matrix (start solution) (reshaped Ep_0)
+        Ep_0_map;        
+        %> sensitivity vector (start solution)
+        S_0;
+        %> sensitivity matrix (start solution) (reshaped S_0)
+        S_0_map;
+        %> vector of permittivity distribution after each iteration
+        Ep_maps_iter;
+    end
+    
+    methods (Abstract = true)
+        % =================================================================
+        %> @brief Function which reconstruct image. 
+        %>
+        %> @param varargin reconstruction algorithm parameters        
+        % =================================================================        
+        it_recon(varargin);
+        
+        % =================================================================
+        %> @brief Compute regularization parameters 
+        %>
+        %> @param varargin regularization method and other parameters
+        %> @return reg_params computed regularization parameters
+        % =================================================================
+        reg_params = regularization_method(varargin);
+        
+        % =================================================================
+        %> @brief Compute regularization parameters 
+        %>
+        %> @param varargin algorithm parameters
+        %> @return ep_vector reconstructed parmittivity distribution (new image)
+        % =================================================================
+        %ep_vector=algorithm_step(varargin);
+    end
+    
+end
+
